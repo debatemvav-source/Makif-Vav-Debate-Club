@@ -49,7 +49,7 @@
   "gallery": {
     "title": "גלריה",
     "description": "הציצו קצת למה שקורה אצלנו במועדון.",
-    "driveGalleryApi": "https://script.google.com/macros/s/AKfycbyxU2oT1UfcWaK0fBrm_8IXt5s7wcnjJSPsL8JTHiwMJMtuB5c79FhLuM-WV9truE5iAA/exec",
+    "driveGalleryApi": "https://script.google.com/macros/s/AKfycbzl8lYC-7x1VDJgTCB-sb9o_9Ut1wmPuMH9K4ckBCPxw63hNZmjvdIfeIbJOWP52AtIzw/exec",
     "images": [
       "./images/IMG-20260111-WA0016.jpg",
       "./images/IMG-20260111-WA0014.jpg",
