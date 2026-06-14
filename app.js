@@ -169,23 +169,46 @@ document.addEventListener('DOMContentLoaded', async () => {
         elements.galleryDesc.textContent = content.gallery.description;
         
         const galleryContainer = document.getElementById('gallery-slideshow');
-        galleryContainer.innerHTML = content.gallery.images.map((img, index) => `
-            <img src="${img}" alt="Debate Club Moment" class="slide ${index === 0 ? 'active' : ''}">
-        `).join('');
         
-        // Setup Slideshow
-        const slides = galleryContainer.querySelectorAll('.slide');
-        let currentSlide = 0;
-        
-        // Clear existing interval if re-rendering
-        if(window.galleryInterval) clearInterval(window.galleryInterval);
-        
-        if (slides.length > 1) {
-            window.galleryInterval = setInterval(() => {
-                slides[currentSlide].classList.remove('active');
-                currentSlide = (currentSlide + 1) % slides.length;
-                slides[currentSlide].classList.add('active');
-            }, 4000); // Wait 4 seconds between images
+        function setupSlideshow(imageArray) {
+            if (!imageArray || imageArray.length === 0) {
+                galleryContainer.innerHTML = '<p style="text-align:center; padding: 2rem;">אין תמונות בגלריה כרגע.</p>';
+                return;
+            }
+            galleryContainer.innerHTML = imageArray.map((img, index) => `
+                <img src="${img}" alt="Debate Club Moment" class="slide ${index === 0 ? 'active' : ''}">
+            `).join('');
+            
+            const slides = galleryContainer.querySelectorAll('.slide');
+            let currentSlide = 0;
+            if(window.galleryInterval) clearInterval(window.galleryInterval);
+            
+            if (slides.length > 1) {
+                window.galleryInterval = setInterval(() => {
+                    slides[currentSlide].classList.remove('active');
+                    currentSlide = (currentSlide + 1) % slides.length;
+                    slides[currentSlide].classList.add('active');
+                }, 4000);
+            }
+        }
+
+        if (content.gallery.driveGalleryApi && content.gallery.driveGalleryApi.trim() !== "") {
+            galleryContainer.innerHTML = '<div style="text-align:center; padding: 5rem; color: var(--text-secondary);">טוען תמונות מעודכנות...</div>';
+            fetch(content.gallery.driveGalleryApi)
+                .then(res => res.json())
+                .then(data => {
+                    if (data && data.images && data.images.length > 0) {
+                        setupSlideshow(data.images);
+                    } else {
+                        setupSlideshow(content.gallery.images);
+                    }
+                })
+                .catch(err => {
+                    console.error("Failed to load drive images:", err);
+                    setupSlideshow(content.gallery.images); // Fallback
+                });
+        } else {
+            setupSlideshow(content.gallery.images);
         }
 
         // FAQ

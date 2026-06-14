@@ -49,6 +49,7 @@
   "gallery": {
     "title": "גלריה",
     "description": "הציצו קצת למה שקורה אצלנו במועדון.",
+    "driveGalleryApi": "",
     "images": [
       "./images/IMG-20260111-WA0016.jpg",
       "./images/IMG-20260111-WA0014.jpg",
