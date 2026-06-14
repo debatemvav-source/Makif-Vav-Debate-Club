@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>מועדון דיבייט מקיף ו'</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="הצטרפו למועדון הדיבייט של מקיף ו'. פתחו כישורי דיבור מול קהל, חשיבה ביקורתית, וביטחון עצמי.">
+</head>
+<body>
+    <header class="glass-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <img id="nav-logo" src="" alt="לוגו דיבייט" class="logo-img" style="display: none;">
+                <span id="nav-title">מועדון דיבייט</span>
+            </div>
+            <nav>
+                <button class="nav-link active" data-target="home" id="nav-home">ראשי</button>
+                <button class="nav-link" data-target="about" id="nav-about">אודות</button>
+                <button class="nav-link" data-target="gallery" id="nav-gallery">גלריה</button>
+                <button class="nav-link" data-target="faq" id="nav-faq">שאלות ותשובות</button>
+                <button class="theme-toggle" id="theme-toggle" aria-label="Toggle Theme">
+                    <span class="icon">🌓</span>
+                </button>
+            </nav>
+            <button class="mobile-menu-btn" id="mobile-menu-btn">☰</button>
+        </div>
+    </header>
+
+    <main id="app-content">
+        <!-- Home Page -->
+        <section id="home" class="page-section active fade-in">
+            <div class="hero" id="hero-section">
+                <div class="hero-content">
+                    <h1 id="hero-title" class="slide-up delay-1"></h1>
+                    <p id="hero-subtitle" class="slide-up delay-1"></p>
+                    <button class="cta-btn slide-up delay-2" id="hero-cta"></button>
+                </div>
+            </div>
+            
+            <div class="features-section">
+                <h2 id="features-title" class="section-title"></h2>
+                <div class="features-grid" id="features-grid">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page-section fade-in">
+            <div class="container">
+                <h2 id="about-title" class="section-title"></h2>
+                
+                <div class="about-block">
+                    <div class="about-text-content">
+                        <p id="about-content1" class="about-text"></p>
+                    </div>
+                    <div class="about-img-content">
+                        <img id="about-img1" src="" alt="About Image 1" style="display: none;">
+                    </div>
+                </div>
+
+                <div class="about-block reverse">
+                    <div class="about-text-content">
+                        <p id="about-content2" class="about-text"></p>
+                    </div>
+                    <div class="about-img-content">
+                        <img id="about-img2" src="" alt="About Image 2" style="display: none;">
+                    </div>
+                </div>
+
+                <div class="about-block">
+                    <div class="about-text-content">
+                        <p id="about-content3" class="about-text"></p>
+                    </div>
+                    <div class="about-img-content">
+                        <img id="about-img3" src="" alt="About Image 3" style="display: none;">
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Gallery Page -->
+        <section id="gallery" class="page-section fade-in">
+            <div class="container">
+                <h2 id="gallery-title" class="section-title"></h2>
+                <p id="gallery-desc" class="text-center" style="margin-bottom: 2rem;"></p>
+                
+                <div class="slideshow-container" id="gallery-slideshow">
+                    <!-- Images populated by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Page -->
+        <section id="faq" class="page-section fade-in">
+            <div class="container">
+                <h2 id="faq-title" class="section-title"></h2>
+                <div class="faq-container" id="faq-container">
+                    <!-- Injected via JS -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="glass-footer">
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy; 2026 <span id="footer-title">מועדון דיבייט מקיף ו'</span>. כל הזכויות שמורות.</p>
+                <div class="social-links">
+                    <a href="#" id="contact-email" class="social-icon"></a>
+                    <a href="#" id="contact-ig" class="social-icon" target="_blank"></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
