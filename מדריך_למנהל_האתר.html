@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>מדריך ניהול האתר - מועדון הדיבייט</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 40px auto; max-width: 800px; color: #333; }
+        h1 { color: #2563eb; text-align: center; }
+        h2 { color: #1d4ed8; border-bottom: 2px solid #e5e7eb; padding-bottom: 5px; margin-top: 30px; }
+        p, li { font-size: 18px; }
+        .highlight { background: #fef08a; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
+        .box { background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin: 30px 0; }
+    </style>
+</head>
+<body>
+    <h1>🏆 מועדון דיבייט מקיף ו' - מדריך ניהול האתר</h1>
+    <p>ברוכים הבאים לאתר הרשמי של מועדון הדיבייט! האתר נבנה בצורה כזו שלא תצטרכו מתכנת כדי לשנות בו דברים בעתיד. כל הניהול של האתר מתבצע דרך חשבון ה-GitHub, בשילוב עם תיקיית Google Drive.</p>
+    
+    <h2>📝 איך לשנות ולעדכן טקסטים?</h2>
+    <p>כל הטקסטים באתר (הסלוגן, האודות, פינת שאלות ותשובות וכו') נשלטים דרך קובץ אחד פשוט שנקרא <strong><code>content.json</code></strong>.</p>
+    <ol>
+        <li>היכנסו לחשבון ה-GitHub שלכם ולחצו על הקובץ <code>content.json</code>.</li>
+        <li>לחצו על סמל ה<strong>עיפרון (✏️)</strong> בצד ימין למעלה כדי לערוך.</li>
+        <li>שנו את הטקסט שאתם רוצים. שימו לב: <span class="highlight">יש לשנות רק את הטקסט שנמצא בתוך המרכאות</span>. (למשל: <code>"heroTitle": "טקסט חדש"</code>).</li>
+        <li>בסיום, גללו למטה ולחצו על הכפתור הירוק <strong>Commit changes</strong> כדי לשמור. האתר יתעדכן בתוך כ-3 דקות.</li>
+    </ol>
+
+    <h2>🖼️ איך להוסיף או להוריד תמונות מהגלריה?</h2>
+    <p>הגלריה של האתר מחוברת ישירות לתיקיית <strong>Google Drive</strong> שלכם.</p>
+    <ul>
+        <li><strong>להוספת תמונה:</strong> פשוט העלו את התמונה מהטלפון או המחשב לתוך תיקיית הדרייב הייעודית. התמונה תופיע אוטומטית באתר!</li>
+        <li><strong>למחיקת תמונה:</strong> פשוט מחקו אותה מתיקיית הדרייב.</li>
+    </ul>
+    
+    <h2>🎨 איך לעדכן את תמונות הלוגו והרקע?</h2>
+    <p>אם תרצו לשנות את הלוגו של המועדון או את התמונה הראשית שמופיעה בחלק העליון של האתר:</p>
+    <ol>
+        <li>לחצו על תיקיית ה-<code>images</code> ב-GitHub.</li>
+        <li>העלו את התמונה החדשה שלכם לתיקייה דרך <strong>Add file -> Upload files</strong>.</li>
+        <li>חזרו לקובץ ה-<code>content.json</code>, ערכו אותו עם העיפרון, ושנו את שם התמונה בשורה הרלוונטית (למשל תחת <code>"heroImage"</code>).</li>
+        <li>שמרו על ידי לחיצה על <strong>Commit changes</strong>.</li>
+    </ol>
+
+    <div class="box">
+        <strong>💡 טיפ חשוב:</strong> תמיד כשאתם שומרים שינוי ב-GitHub, לוקח לשרתים כ-2 עד 3 דקות להתעדכן. אם לא רואים את השינוי באתר מיד, המתינו מעט, ועשו רענון קשיח לדפדפן (Ctrl + F5).
+    </div>
+</body>
+</html>
