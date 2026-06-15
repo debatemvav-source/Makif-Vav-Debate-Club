@@ -4,7 +4,7 @@
     "email": "debatemvav@gmail.com",
     "instagram": "makifvavdebate",
     "logo": "./images/לוגו.png",
-    "driveApiUrl": "https://script.google.com/macros/s/AKfycbzl8lYC-7x1VDJgTCB-sb9o_9Ut1wmPuMH9K4ckBCPxw63hNZmjvdIfeIbJOWP52AtIzw/exec"
+    "driveApiUrl": "https://script.google.com/macros/s/eFo7JWEr6gHaZzTYDVVaQYfjgCJXUsKmT8tCNl9QYYo/exec"
   },
   "nav": {
     "home": "ראשי",
@@ -85,9 +85,7 @@
       "./images/IMG-20250702-WA0004.jpg",
       "./images/IMG-20260318-WA0048.jpg",
       "./images/IMG-20260508-WA0030.jpg",
-      "./images/Photo from matan.jpg",
-      "./images/לוגו.png",
-      "./images/סלוגן.jpeg"
+      "./images/Photo from matan.jpg"
     ]
   },
   "faq": {
