@@ -23,12 +23,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // About
         aboutTitle: document.getElementById('about-title'),
-        aboutContent1: document.getElementById('about-content1'),
-        aboutContent2: document.getElementById('about-content2'),
-        aboutContent3: document.getElementById('about-content3'),
-        aboutImg1: document.getElementById('about-img1'),
-        aboutImg2: document.getElementById('about-img2'),
-        aboutImg3: document.getElementById('about-img3'),
+        aboutContainer: document.getElementById('about-container'),
+        
+        // Testimonials
+        testimonialsTitle: document.getElementById('testimonials-title'),
+        testimonialsGrid: document.getElementById('testimonials-grid'),
         
         // Gallery
         galleryTitle: document.getElementById('gallery-title'),
@@ -52,7 +51,23 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         const response = await fetch('content.json');
         content = await response.json();
+        
+        // Drive Sync Override
+        if (content.general.driveApiUrl && content.general.driveApiUrl.trim() !== "") {
+            try {
+                const driveRes = await fetch(content.general.driveApiUrl);
+                const driveData = await driveRes.json();
+                if (driveData && !driveData.error) {
+                    if (driveData.logo) content.general.logo = driveData.logo;
+                    if (driveData.hero) content.home.heroImage = driveData.hero;
+                    if (driveData.about && driveData.about.length > 0) content.about.images = driveData.about;
+                    if (driveData.gallery && driveData.gallery.length > 0) content.gallery.images = driveData.gallery;
+                }
+            } catch(e) { console.error("Drive sync failed", e); }
+        }
+        
         renderContent();
+        initScrollAnimations();
     } catch (error) {
         console.error("Failed to load content.json", error);
     }
@@ -129,6 +144,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Nav labels
         document.getElementById('nav-home').textContent = content.nav.home;
         document.getElementById('nav-about').textContent = content.nav.about;
+        document.getElementById('nav-testimonials').textContent = content.nav.testimonials;
         document.getElementById('nav-gallery').textContent = content.nav.gallery;
         document.getElementById('nav-faq').textContent = content.nav.faq;
 
@@ -154,14 +170,30 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // About
         elements.aboutTitle.textContent = content.about.title;
-        elements.aboutContent1.textContent = content.about.content1;
-        elements.aboutContent2.textContent = content.about.content2;
-        elements.aboutContent3.textContent = content.about.content3;
+        elements.aboutContainer.innerHTML = content.about.paragraphs.map((p, index) => {
+            const isReverse = index % 2 !== 0;
+            const imgSrc = content.about.images && content.about.images[index] ? content.about.images[index] : '';
+            const imgHtml = imgSrc ? `<div class="about-item-img reveal"><img src="${imgSrc}" alt="About image"></div>` : '';
+            return `
+                <div class="about-item ${isReverse ? 'reverse' : ''}">
+                    <div class="about-item-text reveal">
+                        <h3>${p.subtitle}</h3>
+                        <p>${p.text}</p>
+                    </div>
+                    ${imgHtml}
+                </div>
+            `;
+        }).join('');
         
-        if(content.about.images && content.about.images.length > 0) {
-            if(content.about.images[0]) { elements.aboutImg1.src = content.about.images[0]; elements.aboutImg1.style.display = 'block'; }
-            if(content.about.images[1]) { elements.aboutImg2.src = content.about.images[1]; elements.aboutImg2.style.display = 'block'; }
-            if(content.about.images[2]) { elements.aboutImg3.src = content.about.images[2]; elements.aboutImg3.style.display = 'block'; }
+        // Testimonials
+        if (content.testimonials) {
+            elements.testimonialsTitle.textContent = content.testimonials.title;
+            elements.testimonialsGrid.innerHTML = content.testimonials.items.map((item, index) => `
+                <div class="testimonial-card reveal" style="transition-delay: ${index * 0.1}s">
+                    <p class="testimonial-quote">"${item.quote}"</p>
+                    <p class="testimonial-name">${item.name}</p>
+                </div>
+            `).join('');
         }
 
         // Gallery
@@ -192,24 +224,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
 
-        if (content.gallery.driveGalleryApi && content.gallery.driveGalleryApi.trim() !== "") {
-            galleryContainer.innerHTML = '<div style="text-align:center; padding: 5rem; color: var(--text-secondary);">טוען תמונות מעודכנות...</div>';
-            fetch(content.gallery.driveGalleryApi)
-                .then(res => res.json())
-                .then(data => {
-                    if (data && data.images && data.images.length > 0) {
-                        setupSlideshow(data.images);
-                    } else {
-                        setupSlideshow(content.gallery.images);
-                    }
-                })
-                .catch(err => {
-                    console.error("Failed to load drive images:", err);
-                    setupSlideshow(content.gallery.images); // Fallback
-                });
-        } else {
-            setupSlideshow(content.gallery.images);
-        }
+        setupSlideshow(content.gallery.images);
 
         // FAQ
         elements.faqTitle.textContent = content.faq.title;
@@ -223,5 +238,18 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
             </div>
         `).join('');
+    }
+
+    function initScrollAnimations() {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    entry.target.classList.add('visible'); // For specific elements
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.reveal, .about-item, .testimonial-card').forEach(el => observer.observe(el));
     }
 });
