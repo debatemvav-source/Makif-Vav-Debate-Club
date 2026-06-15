@@ -2,82 +2,111 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>מדריך ניהול האתר - מועדון הדיבייט (מעודכן)</title>
+    <title>מדריך ניהול האתר - מועדון הדיבייט (מפורט)</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 40px auto; max-width: 900px; color: #333; background: #f8fafc; }
-        .container { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        h1 { color: #2563eb; text-align: center; border-bottom: 2px solid #e5e7eb; padding-bottom: 20px; }
-        h2 { color: #1d4ed8; margin-top: 40px; }
-        h3 { color: #475569; }
-        p, li { font-size: 17px; }
-        .highlight { background: #fef08a; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
-        .code-block { background: #1e293b; color: #e2e8f0; padding: 15px; border-radius: 8px; direction: ltr; text-align: left; font-family: monospace; margin: 10px 0; }
-        .box { background: #eff6ff; border: 1px solid #bfdbfe; padding: 20px; border-radius: 8px; margin: 30px 0; }
-        .warning { background: #fffbeb; border: 1px solid #fde68a; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.8; margin: 40px auto; max-width: 900px; color: #2c3e50; background: #f8fafc; }
+        .container { background: white; padding: 50px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        h1 { color: #1e3a8a; text-align: center; border-bottom: 3px solid #bfdbfe; padding-bottom: 20px; font-size: 2.2rem; }
+        h2 { color: #2563eb; margin-top: 50px; background: #eff6ff; padding: 10px 20px; border-radius: 8px; }
+        h3 { color: #334155; margin-top: 30px; font-size: 1.4rem; }
+        p, li { font-size: 18px; }
+        .highlight { background: #fef08a; padding: 2px 5px; border-radius: 3px; font-weight: bold; }
+        .code-block { background: #1e293b; color: #e2e8f0; padding: 20px; border-radius: 8px; direction: ltr; text-align: left; font-family: 'Courier New', Courier, monospace; margin: 15px 0; font-size: 16px; line-height: 1.5; }
+        .box { background: #eff6ff; border: 2px solid #93c5fd; padding: 25px; border-radius: 8px; margin: 30px 0; }
+        .warning { background: #fffbeb; border: 2px solid #fde68a; border-right: 6px solid #f59e0b; padding: 20px; border-radius: 8px; margin: 20px 0; }
+        .danger { background: #fef2f2; border: 2px solid #fecaca; border-right: 6px solid #ef4444; padding: 20px; border-radius: 8px; margin: 20px 0; }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>🏆 מועדון דיבייט מקיף ו' - המדריך המלא לניהול האתר</h1>
-        <p>ברוכים הבאים לאתר הרשמי והמשודרג של מועדון הדיבייט! האתר נבנה בטכנולוגיה מתקדמת המאפשרת שליטה מלאה בתוכן מבלי לדעת תכנות. כל הטקסטים מנוהלים דרך <strong>GitHub</strong>, וכל התמונות מנוהלות דרך <strong>Google Drive</strong>.</p>
+        <h1>🏆 מועדון דיבייט מקיף ו' - מדריך למנהל האתר (מפורט)</h1>
+        <p>שלום למנהל האתר! מדריך זה נכתב בצורה מפורטת ושלב-אחר-שלב כדי להבטיח שתוכל לנהל את האתר בקלות, גם ללא שום ידע טכני מוקדם.</p>
         
-        <h2>🖼️ ניהול תמונות (Google Drive)</h2>
-        <p>האתר שואב את התמונות שלו באופן אוטומטי מתוך הדרייב של המועדון. בתיקייה הראשית ישנן 4 תתי-תיקיות שעליכם להכיר (חשוב לשמור על השמות באנגלית):</p>
-        <ul>
-            <li><strong><code>Logo</code></strong> - הכניסו לכאן את תמונת הלוגו של המועדון. האתר יזהה ויחליף את הלוגו למעלה.</li>
-            <li><strong><code>Hero</code></strong> - הכניסו לכאן תמונה אחת (סלוגן/רקע) שתוצג בחלק העליון והראשון של האתר.</li>
-            <li><strong><code>About</code></strong> - הכניסו לכאן תמונות שילוו את פסקאות חזון המועדון (הן יופיעו אוטומטית לצד הטקסטים בעמוד "אודות").</li>
-            <li><strong><code>Gallery</code></strong> - כאן ניתן להכניס כמה תמונות שרק תרצו! האתר יציג אותן כמצגת מתחלפת ויפהפייה בפינת הגלריה.</li>
-        </ul>
-        <div class="warning">
-            <strong>שימו לב:</strong> אם תמחקו תמונה מהדרייב או תוסיפו אחת חדשה, היא תתעדכן באתר באופן מיידי כשמרעננים את העמוד!
-        </div>
-
-        <h2>📝 ניהול ועריכת טקסטים (GitHub)</h2>
-        <p>כל מילה, כותרת, או תגובה באתר נשלטים דרך קובץ אחד שנמצא בגיטהאב ונקרא <strong><code>content.json</code></strong>.</p>
+        <h2>חלק א': החלפת תמונות (דרך Google Drive)</h2>
+        <p>האתר תוכנת כך שישאב תמונות ישירות מהגוגל דרייב. זה אומר שלא צריך לגעת בקוד כדי להחליף תמונה!</p>
         
-        <h3>איך עורכים?</h3>
+        <h3>מבנה התיקיות החובה:</h3>
+        <p>בתוך תיקיית האתר בדרייב, יש בדיוק 4 תתי-תיקיות. <strong>אסור לשנות את השם שלהן באנגלית.</strong></p>
         <ol>
-            <li>היכנסו לאתר GitHub ופתחו את הקובץ <code>content.json</code>.</li>
-            <li>לחצו על סמל ה<strong>עיפרון (✏️)</strong> בצד ימין למעלה כדי להיכנס למצב עריכה.</li>
-            <li>שנו רק את הטקסטים שנמצאים <strong>בתוך המרכאות הירוקות</strong>. אל תמחקו את המרכאות עצמן או פסיקים שבסוף השורה.</li>
-            <li>בסיום, גללו מטה ולחצו על הכפתור הירוק <strong>Commit changes</strong>.</li>
+            <li><strong><code>Logo</code></strong> - תיקיית הלוגו. הכניסו לכאן <strong>תמונה אחת בלבד</strong>. התמונה הזו תופיע בקטן בפינת האתר למעלה.</li>
+            <li><strong><code>Hero</code></strong> - תיקיית הרקע הראשי. הכניסו לכאן <strong>תמונה אחת בלבד</strong> (רצוי תמונה לרוחב, באיכות טובה). זו התמונה הענקית שרואים מיד כשנכנסים לאתר מאחורי משפט הסלוגן.</li>
+            <li><strong><code>About</code></strong> - תיקיית ה"אודות". כאן מכניסים בדרך כלל 3 תמונות. התמונות האלו יופיעו אוטומטית ליד פסקאות ההסבר על חזון המועדון.</li>
+            <li><strong><code>Gallery</code></strong> - תיקיית הגלריה. לכאן אפשר לזרוק עשרות תמונות! המערכת תיקח את כל התמונות שבתיקייה הזו ותיצור מהן מצגת מתחלפת בתחתית האתר.</li>
         </ol>
 
-        <h3>מבנה הקובץ ואיך לערוך כל עמוד:</h3>
+        <div class="warning">
+            <strong>איך לרענן תמונות?</strong> ברגע שהוספת או מחקת תמונה בגוגל דרייב, השינוי חל מיד! אם נכנסת לאתר והתמונה הישנה עדיין מופיעה, זה קורה בגלל הזיכרון של הדפדפן שלך. פשוט לחץ במקלדת על <strong>Ctrl + F5</strong> (זה נקרא "רענון קשיח") ותראה את השינוי.
+        </div>
+
+        <h2>חלק ב': עריכת טקסטים (דרך GitHub)</h2>
+        <p>כל מילה שמופיעה באתר (החל מסלוגן ועד לציטוט של תלמיד) שמורה בקובץ מילון פשוט בשם <code>content.json</code>.</p>
         
-        <h4>1. אזור האודות (About)</h4>
-        <p>האזור מחולק לפסקאות. לכל פסקה יש <code>subtitle</code> (כותרת משנה) ו-<code>text</code> (התוכן עצמו). ניתן לשנות אותם בקלות:</p>
+        <h3>צעד אחר צעד לאיך עורכים:</h3>
+        <ol>
+            <li>היכנסו לאתר <strong>GitHub.com</strong> והתחברו למשתמש של הדיבייט.</li>
+            <li>במסך הראשי, היכנסו לפרויקט של האתר (<code>debate-club-website</code> או דומה).</li>
+            <li>רשימת הקבצים תופיע מולכם. לחצו על הקובץ <strong><code>content.json</code></strong>.</li>
+            <li>בצד ימין למעלה של המסך, תראו סמל של <strong>עיפרון (✏️)</strong>. לחצו עליו כדי להיכנס למצב עריכת טקסט.</li>
+        </ol>
+
+        <div class="danger">
+            <strong>⚠️ כלל ברזל לעריכת JSON (חשוב מאוד!):</strong><br>
+            הקובץ בנוי בזוגות של <code>"מפתח": "טקסט שלכם"</code>. <br>
+            1. <strong>חובה</strong> לשמור על המרכאות הירוקות (<code>"</code>) בתחילת ובסוף הטקסט שלכם.<br>
+            2. <strong>חובה</strong> לשמור על הפסיק (<code>,</code>) בסוף כל שורה (אם היה שם אחד).<br>
+            מחיקה בטעות של מרכאות או פסיק תגרום לאתר להפסיק לעבוד עד שיתקנו את זה.
+        </div>
+
+        <h3>המדריך המלא לאזורים בקובץ <code>content.json</code>:</h3>
+        
+        <h4>1. עריכת כותרת ופרטי קשר (General / Home)</h4>
+        <p>תחת האזור של <code>general</code> או <code>home</code>, תמצאו את המשפטים הראשיים:</p>
+        <div class="code-block">
+"heroTitle": "הקול שלך שווה יותר.",
+"heroSubtitle": "הצטרפו למועדון הדיבייט של מקיף ו' ותלמדו לדבר, לשכנע ולהוביל.",
+"email": "debatemvav@gmail.com"
+        </div>
+        <p>כדי לשנות את המשפט המרכזי, פשוט שנו את <em>הקול שלך שווה יותר</em> לכל דבר אחר, אבל הקפידו לא למחוק את המרכאות שעוטפות אותו.</p>
+
+        <h4>2. עריכת עמוד האודות (About)</h4>
+        <p>אזור האודות מחולק ל"פסקאות" (Paragraphs). כל פסקה כוללת <code>subtitle</code> (כותרת משנה מודגשת) ו-<code>text</code> (פירוט נרחב). תוכלו לשנות את התוכן שלהן כך:</p>
         <div class="code-block">
 {
-  "subtitle": "קהילה שהיא מעבר למילים",
-  "text": "כאן נכנס הטקסט המלא על המועדון שלנו..."
+  "subtitle": "כאן כותבים את כותרת המשנה",
+  "text": "כאן מכניסים את פסקת ההסבר הארוכה שמתחתיה."
 }
         </div>
 
-        <h4>2. פינת תגובות וחוויות (Testimonials)</h4>
-        <p>כדי להוסיף חוויה של תלמיד חדש, פשוט הוסיפו <code>name</code> (שם התלמיד) ו-<code>quote</code> (הציטוט שלו):</p>
+        <h4>3. פינת חברי המועדון ממליצים (Testimonials)</h4>
+        <p>כדי לשנות את שמות התלמידים הממליצים או את מה שהם אומרים, רדו לאזור ה-<code>testimonials</code>. תראו שם רשימה של חברים. לכל חבר יש <code>name</code> (שם החבר) ו-<code>quote</code> (ציטוט/המלצה):</p>
         <div class="code-block">
 {
   "name": "דנה מ.",
-  "quote": "החוויה הכי משמעותית שהייתה לי בבית הספר."
+  "quote": "לפני הדיבייט בקושי הצלחתי להצביע בכיתה. היום אני יכולה לעמוד מול אולם שלם."
 }
         </div>
 
-        <h4>3. שאלות ותשובות (FAQ)</h4>
-        <p>כדי לשנות שאלות, חפשו את אזור ה-faq, שם מופיע <code>q</code> (השאלה) ו-<code>a</code> (התשובה):</p>
+        <h4>4. עריכת שאלות נפוצות (FAQ)</h4>
+        <p>אזור השאלות בנוי משאלות (<code>q</code> = Question) ותשובות (<code>a</code> = Answer):</p>
         <div class="code-block">
 {
-  "q": "האם חובה לדעת אנגלית?",
-  "a": "לא, אנחנו לומדים יחד ומשתפרים."
+  "q": "מתי מתקיימים המפגשים?",
+  "a": "בימי שלישי בשעה 14:00 בספרייה."
 }
         </div>
 
-        <h4>4. כותרות ויצירת קשר (General / Home)</h4>
-        <p>בראש הקובץ תוכלו לשנות גם את המייל של המועדון, הקישור לאינסטגרם, וכותרות העמוד הראשי (כמו "הקול שלך שווה יותר").</p>
+        <h3>איך שומרים את השינויים בסוף העריכה?</h3>
+        <ol>
+            <li>לאחר שסיימתם לערוך ולבדוק שלא מחקתם בטעות מרכאות, רדו לתחתית הדף לחלוטין.</li>
+            <li>תראו כפתור ירוק בשם <strong>Commit changes</strong> (או כפתור ירוק דומה למעלה מימין). לחצו עליו.</li>
+            <li>בחלון הקטן שיקפוץ, לחצו שוב על <strong>Commit changes</strong> (הכפתור הירוק).</li>
+        </ol>
 
         <div class="box">
-            <strong>💡 טיפ זהב לאחזקת האתר:</strong> תמיד כשאתם שומרים שינוי ב-GitHub (Commit changes), לוקח לשרתים של אינטרנט לעדכן את הקבצים, ולכן **יש להמתין 3 עד 5 דקות**. אם עבר זמן ואינכם רואים את השינוי, לחצו במקלדת על <strong>Ctrl + F5</strong> כדי למחוק את זיכרון הדפדפן ולראות את הגרסה החדשה!
+            <strong>⏳ טיפ אחרון וחשוב מאין כמותו: הזמן שגיטהאב לוקח!</strong><br>
+            שמרתם שינוי טקסט? מצוין. שרתי גיטהאב נמצאים בארצות הברית ולוקח להם "להפיץ" את האתר שלכם מחדש. <strong>זה לוקח בין 3 ל-5 דקות.</strong> 
+            <br>
+            אל תלחצו אם הטקסט לא משתנה מיד. המתינו 4 דקות, פתחו את האתר במחשב ולחצו <strong>Ctrl + F5</strong>. אם אתם בטלפון, היכנסו לאתר במצב "גלישה בסתר" (Incognito) או מחקו את היסטוריית הגלישה כדי לא לראות את האתר הישן ששמור בזיכרון של הטלפון.
         </div>
     </div>
 </body>
