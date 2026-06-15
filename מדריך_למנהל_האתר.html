@@ -2,47 +2,83 @@
 <html lang="he" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <title>מדריך ניהול האתר - מועדון הדיבייט</title>
+    <title>מדריך ניהול האתר - מועדון הדיבייט (מעודכן)</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 40px auto; max-width: 800px; color: #333; }
-        h1 { color: #2563eb; text-align: center; }
-        h2 { color: #1d4ed8; border-bottom: 2px solid #e5e7eb; padding-bottom: 5px; margin-top: 30px; }
-        p, li { font-size: 18px; }
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; margin: 40px auto; max-width: 900px; color: #333; background: #f8fafc; }
+        .container { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        h1 { color: #2563eb; text-align: center; border-bottom: 2px solid #e5e7eb; padding-bottom: 20px; }
+        h2 { color: #1d4ed8; margin-top: 40px; }
+        h3 { color: #475569; }
+        p, li { font-size: 17px; }
         .highlight { background: #fef08a; padding: 2px 5px; border-radius: 3px; font-family: monospace; }
-        .box { background: #f8fafc; border: 1px solid #e2e8f0; padding: 20px; border-radius: 8px; margin: 30px 0; }
+        .code-block { background: #1e293b; color: #e2e8f0; padding: 15px; border-radius: 8px; direction: ltr; text-align: left; font-family: monospace; margin: 10px 0; }
+        .box { background: #eff6ff; border: 1px solid #bfdbfe; padding: 20px; border-radius: 8px; margin: 30px 0; }
+        .warning { background: #fffbeb; border: 1px solid #fde68a; padding: 20px; border-radius: 8px; margin: 20px 0; }
     </style>
 </head>
 <body>
-    <h1>🏆 מועדון דיבייט מקיף ו' - מדריך ניהול האתר</h1>
-    <p>ברוכים הבאים לאתר הרשמי של מועדון הדיבייט! האתר נבנה בצורה כזו שלא תצטרכו מתכנת כדי לשנות בו דברים בעתיד. כל הניהול של האתר מתבצע דרך חשבון ה-GitHub, בשילוב עם תיקיית Google Drive.</p>
-    
-    <h2>📝 איך לשנות ולעדכן טקסטים?</h2>
-    <p>כל הטקסטים באתר (הסלוגן, האודות, פינת שאלות ותשובות וכו') נשלטים דרך קובץ אחד פשוט שנקרא <strong><code>content.json</code></strong>.</p>
-    <ol>
-        <li>היכנסו לחשבון ה-GitHub שלכם ולחצו על הקובץ <code>content.json</code>.</li>
-        <li>לחצו על סמל ה<strong>עיפרון (✏️)</strong> בצד ימין למעלה כדי לערוך.</li>
-        <li>שנו את הטקסט שאתם רוצים. שימו לב: <span class="highlight">יש לשנות רק את הטקסט שנמצא בתוך המרכאות</span>. (למשל: <code>"heroTitle": "טקסט חדש"</code>).</li>
-        <li>בסיום, גללו למטה ולחצו על הכפתור הירוק <strong>Commit changes</strong> כדי לשמור. האתר יתעדכן בתוך כ-3 דקות.</li>
-    </ol>
+    <div class="container">
+        <h1>🏆 מועדון דיבייט מקיף ו' - המדריך המלא לניהול האתר</h1>
+        <p>ברוכים הבאים לאתר הרשמי והמשודרג של מועדון הדיבייט! האתר נבנה בטכנולוגיה מתקדמת המאפשרת שליטה מלאה בתוכן מבלי לדעת תכנות. כל הטקסטים מנוהלים דרך <strong>GitHub</strong>, וכל התמונות מנוהלות דרך <strong>Google Drive</strong>.</p>
+        
+        <h2>🖼️ ניהול תמונות (Google Drive)</h2>
+        <p>האתר שואב את התמונות שלו באופן אוטומטי מתוך הדרייב של המועדון. בתיקייה הראשית ישנן 4 תתי-תיקיות שעליכם להכיר (חשוב לשמור על השמות באנגלית):</p>
+        <ul>
+            <li><strong><code>Logo</code></strong> - הכניסו לכאן את תמונת הלוגו של המועדון. האתר יזהה ויחליף את הלוגו למעלה.</li>
+            <li><strong><code>Hero</code></strong> - הכניסו לכאן תמונה אחת (סלוגן/רקע) שתוצג בחלק העליון והראשון של האתר.</li>
+            <li><strong><code>About</code></strong> - הכניסו לכאן תמונות שילוו את פסקאות חזון המועדון (הן יופיעו אוטומטית לצד הטקסטים בעמוד "אודות").</li>
+            <li><strong><code>Gallery</code></strong> - כאן ניתן להכניס כמה תמונות שרק תרצו! האתר יציג אותן כמצגת מתחלפת ויפהפייה בפינת הגלריה.</li>
+        </ul>
+        <div class="warning">
+            <strong>שימו לב:</strong> אם תמחקו תמונה מהדרייב או תוסיפו אחת חדשה, היא תתעדכן באתר באופן מיידי כשמרעננים את העמוד!
+        </div>
 
-    <h2>🖼️ איך להוסיף או להוריד תמונות מהגלריה?</h2>
-    <p>הגלריה של האתר מחוברת ישירות לתיקיית <strong>Google Drive</strong> שלכם.</p>
-    <ul>
-        <li><strong>להוספת תמונה:</strong> פשוט העלו את התמונה מהטלפון או המחשב לתוך תיקיית הדרייב הייעודית. התמונה תופיע אוטומטית באתר!</li>
-        <li><strong>למחיקת תמונה:</strong> פשוט מחקו אותה מתיקיית הדרייב.</li>
-    </ul>
-    
-    <h2>🎨 איך לעדכן את תמונות הלוגו והרקע?</h2>
-    <p>אם תרצו לשנות את הלוגו של המועדון או את התמונה הראשית שמופיעה בחלק העליון של האתר:</p>
-    <ol>
-        <li>לחצו על תיקיית ה-<code>images</code> ב-GitHub.</li>
-        <li>העלו את התמונה החדשה שלכם לתיקייה דרך <strong>Add file -> Upload files</strong>.</li>
-        <li>חזרו לקובץ ה-<code>content.json</code>, ערכו אותו עם העיפרון, ושנו את שם התמונה בשורה הרלוונטית (למשל תחת <code>"heroImage"</code>).</li>
-        <li>שמרו על ידי לחיצה על <strong>Commit changes</strong>.</li>
-    </ol>
+        <h2>📝 ניהול ועריכת טקסטים (GitHub)</h2>
+        <p>כל מילה, כותרת, או תגובה באתר נשלטים דרך קובץ אחד שנמצא בגיטהאב ונקרא <strong><code>content.json</code></strong>.</p>
+        
+        <h3>איך עורכים?</h3>
+        <ol>
+            <li>היכנסו לאתר GitHub ופתחו את הקובץ <code>content.json</code>.</li>
+            <li>לחצו על סמל ה<strong>עיפרון (✏️)</strong> בצד ימין למעלה כדי להיכנס למצב עריכה.</li>
+            <li>שנו רק את הטקסטים שנמצאים <strong>בתוך המרכאות הירוקות</strong>. אל תמחקו את המרכאות עצמן או פסיקים שבסוף השורה.</li>
+            <li>בסיום, גללו מטה ולחצו על הכפתור הירוק <strong>Commit changes</strong>.</li>
+        </ol>
 
-    <div class="box">
-        <strong>💡 טיפ חשוב:</strong> תמיד כשאתם שומרים שינוי ב-GitHub, לוקח לשרתים כ-2 עד 3 דקות להתעדכן. אם לא רואים את השינוי באתר מיד, המתינו מעט, ועשו רענון קשיח לדפדפן (Ctrl + F5).
+        <h3>מבנה הקובץ ואיך לערוך כל עמוד:</h3>
+        
+        <h4>1. אזור האודות (About)</h4>
+        <p>האזור מחולק לפסקאות. לכל פסקה יש <code>subtitle</code> (כותרת משנה) ו-<code>text</code> (התוכן עצמו). ניתן לשנות אותם בקלות:</p>
+        <div class="code-block">
+{
+  "subtitle": "קהילה שהיא מעבר למילים",
+  "text": "כאן נכנס הטקסט המלא על המועדון שלנו..."
+}
+        </div>
+
+        <h4>2. פינת תגובות וחוויות (Testimonials)</h4>
+        <p>כדי להוסיף חוויה של תלמיד חדש, פשוט הוסיפו <code>name</code> (שם התלמיד) ו-<code>quote</code> (הציטוט שלו):</p>
+        <div class="code-block">
+{
+  "name": "דנה מ.",
+  "quote": "החוויה הכי משמעותית שהייתה לי בבית הספר."
+}
+        </div>
+
+        <h4>3. שאלות ותשובות (FAQ)</h4>
+        <p>כדי לשנות שאלות, חפשו את אזור ה-faq, שם מופיע <code>q</code> (השאלה) ו-<code>a</code> (התשובה):</p>
+        <div class="code-block">
+{
+  "q": "האם חובה לדעת אנגלית?",
+  "a": "לא, אנחנו לומדים יחד ומשתפרים."
+}
+        </div>
+
+        <h4>4. כותרות ויצירת קשר (General / Home)</h4>
+        <p>בראש הקובץ תוכלו לשנות גם את המייל של המועדון, הקישור לאינסטגרם, וכותרות העמוד הראשי (כמו "הקול שלך שווה יותר").</p>
+
+        <div class="box">
+            <strong>💡 טיפ זהב לאחזקת האתר:</strong> תמיד כשאתם שומרים שינוי ב-GitHub (Commit changes), לוקח לשרתים של אינטרנט לעדכן את הקבצים, ולכן **יש להמתין 3 עד 5 דקות**. אם עבר זמן ואינכם רואים את השינוי, לחצו במקלדת על <strong>Ctrl + F5</strong> כדי למחוק את זיכרון הדפדפן ולראות את הגרסה החדשה!
+        </div>
     </div>
 </body>
 </html>
