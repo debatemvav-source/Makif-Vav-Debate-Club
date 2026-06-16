@@ -94,6 +94,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             // Close mobile menu
             if(window.innerWidth <= 768) {
                 elements.navMenu.classList.remove('show');
+                elements.mobileBtn.textContent = '☰';
+                elements.mobileBtn.style.transform = 'rotate(0deg)';
             }
         });
     });
@@ -106,6 +108,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Mobile Menu
     elements.mobileBtn.addEventListener('click', () => {
         elements.navMenu.classList.toggle('show');
+        if(elements.navMenu.classList.contains('show')) {
+            elements.mobileBtn.textContent = '✕';
+            elements.mobileBtn.style.transform = 'rotate(90deg)';
+        } else {
+            elements.mobileBtn.textContent = '☰';
+            elements.mobileBtn.style.transform = 'rotate(0deg)';
+        }
     });
 
     // Logo click redirects to home
@@ -246,7 +255,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('active');
-                    entry.target.classList.add('visible'); // For specific elements
+                    entry.target.classList.add('visible');
+                } else {
+                    entry.target.classList.remove('active');
+                    entry.target.classList.remove('visible');
                 }
             });
         }, { threshold: 0.1 });
