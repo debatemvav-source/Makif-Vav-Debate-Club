@@ -252,5 +252,32 @@ document.addEventListener('DOMContentLoaded', async () => {
         }, { threshold: 0.1 });
         
         document.querySelectorAll('.reveal, .about-item, .testimonial-card').forEach(el => observer.observe(el));
+        
+        // Scroll Progress Bar
+        const progressBar = document.getElementById('scroll-progress');
+        if (progressBar) {
+            window.addEventListener('scroll', () => {
+                const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                progressBar.style.width = scrolled + "%";
+            });
+        }
+        
+        // Particles Generation
+        const particlesContainer = document.getElementById('particles-container');
+        if (particlesContainer) {
+            for (let i = 0; i < 15; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 20 + 10; // 10px to 30px
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                particlesContainer.appendChild(particle);
+            }
+        }
     }
 });

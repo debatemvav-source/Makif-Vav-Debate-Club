@@ -46,6 +46,18 @@ body {
     flex-direction: column;
 }
 
+/* Scroll Progress Bar */
+#scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--accent), #8b5cf6, #ec4899);
+    width: 0%;
+    z-index: 9999;
+    transition: width 0.1s ease-out;
+}
+
 /* Glassmorphism Navigation */
 .glass-nav {
     position: fixed;
@@ -190,6 +202,35 @@ main {
     position: relative;
     overflow: hidden;
     gap: 2rem;
+}
+
+/* Particles */
+#particles-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.particle {
+    position: absolute;
+    bottom: -50px;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    animation: floatParticle linear infinite;
+    backdrop-filter: blur(2px);
+}
+
+@keyframes floatParticle {
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+    20% { opacity: 1; }
+    80% { opacity: 0.5; }
+    100% { transform: translateY(-100vh) translateX(100px) rotate(360deg); opacity: 0; }
 }
 
 .hero::before {
@@ -372,11 +413,14 @@ main {
     height: 100%;
     object-fit: contain;
     opacity: 0;
-    transition: opacity 1.5s ease-in-out; /* 1.5 second slow crossfade */
+    transform: scale(1);
+    transition: opacity 1.5s ease-in-out, transform 1.5s ease-in-out;
 }
 
 .slide.active {
     opacity: 1;
+    transform: scale(1.05);
+    transition: opacity 1.5s ease-in-out, transform 5s linear;
 }
 
 @media (max-width: 768px) {
@@ -423,7 +467,9 @@ main {
 }
 
 @keyframes popIn {
-    to { opacity: 1; transform: translateY(0); }
+    0% { opacity: 0; transform: translateY(40px) scale(0.9); }
+    70% { transform: translateY(-10px) scale(1.02); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
 }
 
 .chat-question {
@@ -557,11 +603,20 @@ main {
 
 /* Testimonials */
 .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
-.testimonial-card { background: var(--glass-bg); backdrop-filter: blur(16px); border: 1px solid var(--glass-border); padding: 2.5rem; border-radius: 20px; box-shadow: var(--card-shadow); transition: var(--transition); opacity: 0; transform: translateY(30px); }
+.testimonial-card { background: var(--glass-bg); backdrop-filter: blur(16px); border: 1px solid var(--glass-border); padding: 2.5rem; border-radius: 20px; box-shadow: var(--card-shadow); transition: var(--transition); opacity: 0; transform: translateY(30px); position: relative; overflow: hidden; }
 .testimonial-card.visible { opacity: 1; transform: translateY(0); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
 .testimonial-card:hover { transform: translateY(-10px) scale(1.02); border-color: rgba(37, 99, 235, 0.3); box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2); }
 .testimonial-quote { font-size: 1.1rem; font-style: italic; color: var(--text-secondary); margin-bottom: 1.5rem; }
 .testimonial-name { font-weight: 800; color: var(--accent); font-size: 1.1rem; }
+
+/* Card Glare Effect */
+.glass-card { position: relative; overflow: hidden; }
+.glass-card::before, .testimonial-card::before {
+    content: ''; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
+    background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-25deg); transition: all 0.7s ease; z-index: 1; pointer-events: none;
+}
+.glass-card:hover::before, .testimonial-card:hover::before { left: 200%; }
 
 /* Reveal Animation */
 .reveal { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
