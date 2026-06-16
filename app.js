@@ -161,9 +161,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Home
         if (content.home.heroImage) {
             elements.heroSection.style.backgroundImage = `url('${content.home.heroImage}')`;
-            elements.heroSection.style.backgroundSize = 'cover';
-            elements.heroSection.style.backgroundPosition = 'top center';
-            elements.heroSection.style.backgroundRepeat = 'no-repeat';
         }
         elements.heroTitle.textContent = content.home.heroTitle;
         elements.heroSubtitle.textContent = content.home.heroSubtitle;
