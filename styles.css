@@ -635,10 +635,10 @@ main {
     nav.show { max-height: 400px; padding: 1.5rem; border-bottom: 1px solid var(--glass-border); }
     .mobile-menu-btn { display: block; transition: transform 0.3s ease; }
     
-    .hero { min-height: 60vh; background-size: cover; background-position: center; }
+    .hero { min-height: 70vh; background-size: 100% auto; background-position: top center; }
     .hero h1 { font-size: 2.2rem; }
     .hero p { font-size: 1.1rem; margin-bottom: 1.5rem; }
-    .hero-content { padding: 1.5rem; margin-top: 0; }
+    .hero-content { padding: 1.5rem; margin-top: 15vh; }
     
     .section-title { font-size: 2rem; }
     .features-section, .page-section { padding: 2rem 1rem; }
