@@ -55,7 +55,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Drive Sync Override
         if (content.general.driveApiUrl && content.general.driveApiUrl.trim() !== "") {
             try {
-                const driveRes = await fetch(content.general.driveApiUrl);
+                const apiUrl = content.general.driveApiUrl + (content.general.driveApiUrl.includes('?') ? '&' : '?') + 't=' + new Date().getTime();
+                const driveRes = await fetch(apiUrl);
                 const driveData = await driveRes.json();
                 if (driveData && !driveData.error) {
                     if (driveData.logo) content.general.logo = driveData.logo;
