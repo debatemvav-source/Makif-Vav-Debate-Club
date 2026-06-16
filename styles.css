@@ -646,7 +646,7 @@ main {
     .features-grid, .testimonials-grid { display: flex; flex-direction: row; flex-wrap: nowrap; overflow-x: auto; overflow-y: hidden; scroll-snap-type: x mandatory; padding-bottom: 2rem; gap: 1.5rem; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
     .features-grid::-webkit-scrollbar, .testimonials-grid::-webkit-scrollbar { display: none; }
     
-    .glass-card, .testimonial-card { min-width: 85vw; scroll-snap-align: center; flex: 0 0 auto; }
+    .glass-card, .testimonial-card { width: 85vw; min-width: 85vw; max-width: 85vw; scroll-snap-align: center; flex: 0 0 85vw; white-space: normal; }
     .glass-card:hover, .testimonial-card:hover { transform: none; box-shadow: var(--card-shadow); }
     .glass-card:hover::before, .testimonial-card:hover::before { left: -100%; }
     
