@@ -251,7 +251,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             });
         }, { threshold: 0.1 });
         
-        document.querySelectorAll('.reveal, .about-item, .testimonial-card').forEach(el => observer.observe(el));
+        document.querySelectorAll('.reveal, .about-item, .testimonial-card, .qa-pair').forEach(el => observer.observe(el));
         
         // Scroll Progress Bar
         const progressBar = document.getElementById('scroll-progress');
