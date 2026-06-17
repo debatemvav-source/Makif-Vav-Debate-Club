@@ -90,14 +90,7 @@ body {
     color: var(--accent);
     background: linear-gradient(45deg, var(--accent), #8b5cf6);
     -webkit-background-clip: text;
-.hero h1 {
-    font-size: 4.5rem;
-    font-weight: 800;
-    margin-bottom: 1rem;
-    background: linear-gradient(to right, #fff, var(--text-secondary));
-    -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    line-height: 1.2;
 }
 
 .logo-img {
