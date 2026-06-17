@@ -288,5 +288,26 @@ document.addEventListener('DOMContentLoaded', async () => {
                 particlesContainer.appendChild(particle);
             }
         }
+        
+        // Wheel Effect for Testimonials
+        const tGrid = document.getElementById('testimonials-grid');
+        if (tGrid) {
+            tGrid.addEventListener('scroll', () => {
+                const cards = tGrid.querySelectorAll('.testimonial-card');
+                const gridCenter = window.innerWidth / 2;
+                cards.forEach(card => {
+                    const rect = card.getBoundingClientRect();
+                    const cardCenter = rect.left + (rect.width / 2);
+                    const dist = Math.abs(gridCenter - cardCenter);
+                    const scale = Math.max(0.85, 1 - (dist / window.innerWidth) * 0.3);
+                    const opacity = Math.max(0.4, 1 - (dist / window.innerWidth));
+                    card.style.setProperty('--wheel-scale', scale);
+                    card.style.setProperty('--wheel-opacity', opacity);
+                    card.style.transition = 'transform 0.1s ease-out, opacity 0.1s ease-out';
+                });
+            });
+            // Initial trigger after layout
+            setTimeout(() => tGrid.dispatchEvent(new Event('scroll')), 500);
+        }
     }
 });

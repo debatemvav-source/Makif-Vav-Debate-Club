@@ -610,7 +610,7 @@ main {
 /* Testimonials */
 .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
 .testimonial-card { background: var(--glass-bg); backdrop-filter: blur(16px); border: 1px solid var(--glass-border); padding: 2.5rem; border-radius: 20px; box-shadow: var(--card-shadow); transition: var(--transition); opacity: 0; transform: translateY(30px); position: relative; overflow: hidden; }
-.testimonial-card.visible { opacity: 1; transform: translateY(0); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+.testimonial-card.visible { opacity: var(--wheel-opacity, 1); transform: translateY(0) scale(var(--wheel-scale, 1)); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
 .testimonial-card:hover { transform: translateY(-10px) scale(1.02); border-color: rgba(37, 99, 235, 0.3); box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2); }
 .testimonial-quote { font-size: 1.1rem; font-style: italic; color: var(--text-secondary); margin-bottom: 1.5rem; }
 .testimonial-name { font-weight: 800; color: var(--accent); font-size: 1.1rem; }
