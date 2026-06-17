@@ -162,7 +162,20 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (content.home.heroImage) {
             elements.heroSection.style.backgroundImage = `url('${content.home.heroImage}')`;
         }
-        elements.heroTitle.textContent = content.home.heroTitle;
+        // Typewriter Effect for Hero Title
+        elements.heroTitle.innerHTML = '';
+        const titleText = content.home.heroTitle || '';
+        let typeIndex = 0;
+        function typeWriter() {
+            if (typeIndex < titleText.length) {
+                elements.heroTitle.innerHTML = titleText.substring(0, typeIndex + 1) + '<span class="typewriter-cursor">|</span>';
+                typeIndex++;
+                setTimeout(typeWriter, Math.random() * 50 + 50);
+            } else {
+                elements.heroTitle.innerHTML = titleText + '<span class="typewriter-cursor blink">|</span>';
+            }
+        }
+        setTimeout(typeWriter, 600);
         elements.heroSubtitle.textContent = content.home.heroSubtitle;
         elements.heroCta.textContent = content.home.cta;
         elements.featuresTitle.textContent = content.home.featuresTitle;
@@ -218,31 +231,72 @@ document.addEventListener('DOMContentLoaded', async () => {
         elements.galleryTitle.textContent = content.gallery.title;
         elements.galleryDesc.textContent = content.gallery.description;
         
-        const galleryContainer = document.getElementById('gallery-slideshow');
+        const galleryGrid = document.getElementById('gallery-grid');
         
-        function setupSlideshow(imageArray) {
+        function setupMasonryGallery(imageArray) {
             if (!imageArray || imageArray.length === 0) {
-                galleryContainer.innerHTML = '<p style="text-align:center; padding: 2rem;">אין תמונות בגלריה כרגע.</p>';
+                galleryGrid.innerHTML = '<p style="text-align:center; padding: 2rem; width: 100%;">אין תמונות בגלריה כרגע.</p>';
                 return;
             }
-            galleryContainer.innerHTML = imageArray.map((img, index) => `
-                <img src="${img}" alt="Debate Club Moment" class="slide ${index === 0 ? 'active' : ''}">
+            
+            galleryGrid.innerHTML = imageArray.map((img, index) => `
+                <div class="masonry-item reveal delay-${(index % 3) + 1}" data-index="${index}">
+                    <img src="${img}" alt="Debate Moment ${index + 1}">
+                </div>
             `).join('');
             
-            const slides = galleryContainer.querySelectorAll('.slide');
-            let currentSlide = 0;
-            if(window.galleryInterval) clearInterval(window.galleryInterval);
+            // Lightbox Logic
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const closeBtn = document.getElementById('lightbox-close');
+            const prevBtn = document.getElementById('lightbox-prev');
+            const nextBtn = document.getElementById('lightbox-next');
+            let currentIndex = 0;
             
-            if (slides.length > 1) {
-                window.galleryInterval = setInterval(() => {
-                    slides[currentSlide].classList.remove('active');
-                    currentSlide = (currentSlide + 1) % slides.length;
-                    slides[currentSlide].classList.add('active');
-                }, 4000);
+            function openLightbox(index) {
+                currentIndex = index;
+                lightboxImg.src = imageArray[currentIndex];
+                lightbox.classList.add('show');
             }
+            
+            function closeLightbox() {
+                lightbox.classList.remove('show');
+            }
+            
+            function showNext() {
+                currentIndex = (currentIndex + 1) % imageArray.length;
+                lightboxImg.src = imageArray[currentIndex];
+            }
+            
+            function showPrev() {
+                currentIndex = (currentIndex - 1 + imageArray.length) % imageArray.length;
+                lightboxImg.src = imageArray[currentIndex];
+            }
+            
+            // Event Listeners
+            galleryGrid.querySelectorAll('.masonry-item').forEach(item => {
+                item.addEventListener('click', () => openLightbox(parseInt(item.getAttribute('data-index'))));
+            });
+            
+            closeBtn.addEventListener('click', closeLightbox);
+            nextBtn.addEventListener('click', showNext);
+            prevBtn.addEventListener('click', showPrev);
+            
+            // Close on background click
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) closeLightbox();
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('show')) return;
+                if (e.key === 'Escape') closeLightbox();
+                if (e.key === 'ArrowRight') showPrev(); // RTL reversed
+                if (e.key === 'ArrowLeft') showNext();  // RTL reversed
+            });
         }
 
-        setupSlideshow(content.gallery.images);
+        setupMasonryGallery(content.gallery.images);
 
         // FAQ
         elements.faqTitle.textContent = content.faq.title;
