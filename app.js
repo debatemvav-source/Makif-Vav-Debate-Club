@@ -246,10 +246,22 @@ document.addEventListener('DOMContentLoaded', async () => {
             fetch(content.general.driveApiUrl)
                 .then(res => res.json())
                 .then(data => {
-                    if (data && data.images && data.images.length > 0) {
-                        setupSlideshow(data.images);
+                    // הגלריה
+                    if (data && data.gallery && data.gallery.length > 0) {
+                        setupSlideshow(data.gallery);
                     } else {
                         setupSlideshow(content.gallery.images);
+                    }
+                    
+                    // תמונות נוספות מהדרייב אם קיימות
+                    if (data.logo) document.getElementById('logo-img').src = data.logo;
+                    if (data.hero) document.getElementById('hero').style.backgroundImage = `linear-gradient(to bottom, rgba(15, 23, 42, 0.4), var(--bg-primary)), url('${data.hero}')`;
+                    
+                    if (data.about && data.about.length > 0) {
+                        const aboutImgs = document.querySelectorAll('.about-item-img img');
+                        aboutImgs.forEach((img, i) => {
+                            if (data.about[i]) img.src = data.about[i];
+                        });
                     }
                 })
                 .catch(err => {
