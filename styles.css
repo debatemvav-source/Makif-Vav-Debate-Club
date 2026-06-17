@@ -308,50 +308,23 @@ main {
     box-shadow: 0 15px 25px rgba(37, 99, 235, 0.4);
 }
 
-/* Features Grid */
-.features-section {
-    padding: 4rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.glass-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid var(--glass-border);
-    border-radius: 20px;
-    padding: 2rem;
-    box-shadow: var(--card-shadow);
-    transition: var(--transition);
-}
-
-.glass-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px rgba(37, 99, 235, 0.15);
-    border-color: rgba(37, 99, 235, 0.2);
-}
-
-.feature-icon {
-    font-size: 3rem;
-    margin-bottom: 1.5rem;
-}
-
-.feature-title {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-    color: var(--text-primary);
-}
-
-.feature-desc {
-    color: var(--text-secondary);
-}
+/* Timeline Layout */
+.features-section { padding: 4rem 2rem; max-width: 1200px; margin: 0 auto; }
+.timeline-container { position: relative; max-width: 1000px; margin: 4rem auto; padding: 2rem 0; }
+.timeline-line-bg { position: absolute; top: 0; bottom: 0; left: 50%; width: 4px; background: rgba(255,255,255,0.05); transform: translateX(-50%); border-radius: 2px; }
+.timeline-line-progress { position: absolute; top: 0; left: 50%; width: 4px; background: var(--accent); transform: translateX(-50%); border-radius: 2px; height: 0; box-shadow: 0 0 15px var(--accent); transition: height 0.1s ease-out; z-index: 1; }
+.timeline-item { display: flex; width: 100%; position: relative; margin-bottom: 4rem; }
+.timeline-item.right { justify-content: flex-start; padding-left: 50%; }
+.timeline-item.left { justify-content: flex-end; padding-right: 50%; }
+.timeline-dot { position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 40px; background: var(--bg-primary); border: 2px solid rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--text-secondary); font-weight: bold; z-index: 2; transition: all 0.4s ease; }
+.timeline-item.timeline-active .timeline-dot { background: var(--accent); color: white; border-color: var(--accent); box-shadow: 0 0 20px rgba(37, 99, 235, 0.6); }
+.timeline-content-wrapper { width: 85%; margin: 0 2rem; display: flex; flex-direction: column; filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3)); }
+.timeline-ribbon { background: linear-gradient(135deg, var(--accent), #1e40af); padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; position: relative; }
+.timeline-item.left .timeline-ribbon { clip-path: polygon(100% 0, 100% 100%, 0 100%, 15px 50%, 0 0); padding-left: 2.5rem; border-top-right-radius: 10px; border-bottom-right-radius: 10px; }
+.timeline-item.right .timeline-ribbon { clip-path: polygon(0 0, 0 100%, 100% 100%, calc(100% - 15px) 50%, 100% 0); padding-right: 2.5rem; border-top-left-radius: 10px; border-bottom-left-radius: 10px; }
+.feature-icon { font-size: 1.5rem; }
+.feature-title { font-size: 1.2rem; font-weight: bold; color: white; margin: 0; }
+.feature-desc { font-size: 1.1rem; color: var(--text-secondary); line-height: 1.6; }
 
 /* About Section */
 .about-block {
@@ -688,7 +661,20 @@ main {
     .section-title { font-size: 2rem; }
     .features-section, .page-section { padding: 2rem 1rem; }
     
-    .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    /* Timeline Mobile */
+    .timeline-container { padding: 1rem 0; margin: 2rem auto; }
+    .timeline-line-bg, .timeline-line-progress { left: auto; right: 20px; transform: none; }
+    .timeline-item { justify-content: flex-start; padding-right: 40px !important; padding-left: 0 !important; margin-bottom: 3rem; }
+    .timeline-item.right, .timeline-item.left { justify-content: flex-start; }
+    .timeline-dot { left: auto; right: 0; transform: none; width: 35px; height: 35px; font-size: 0.9rem; }
+    .timeline-content-wrapper { width: 100%; margin: 0; }
+    .timeline-ribbon { margin-bottom: 0.5rem; }
+    .timeline-item.left .timeline-ribbon, .timeline-item.right .timeline-ribbon { 
+        clip-path: polygon(0 0, 0 100%, 100% 100%, calc(100% - 15px) 50%, 100% 0); 
+        padding-right: 2.5rem; padding-left: 1rem;
+        border-top-left-radius: 10px; border-bottom-left-radius: 10px;
+        border-top-right-radius: 0; border-bottom-right-radius: 0;
+    }
     .testimonials-grid { gap: 1rem; }
     .testimonial-card { width: 300px; padding: 2rem; }
     .marquee-wrapper::before, .marquee-wrapper::after { width: 50px; }

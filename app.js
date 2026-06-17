@@ -167,13 +167,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         elements.heroCta.textContent = content.home.cta;
         elements.featuresTitle.textContent = content.home.featuresTitle;
         
-        elements.featuresGrid.innerHTML = content.home.features.map(f => `
-            <div class="glass-card">
-                <div class="feature-icon">${f.icon}</div>
-                <h3 class="feature-title">${f.title}</h3>
-                <p class="feature-desc">${f.description}</p>
-            </div>
-        `).join('');
+        elements.featuresGrid.className = 'timeline-container';
+        elements.featuresGrid.innerHTML = `
+            <div class="timeline-line-bg"></div>
+            <div class="timeline-line-progress" id="timeline-progress"></div>
+            ${content.home.features.map((f, index) => `
+                <div class="timeline-item ${index % 2 === 0 ? 'right' : 'left'}">
+                    <div class="timeline-dot" data-index="${index}">${index + 1}</div>
+                    <div class="timeline-content-wrapper reveal delay-${index % 2 + 1}">
+                        <div class="timeline-ribbon">
+                            <span class="feature-icon">${f.icon}</span>
+                            <h3 class="feature-title">${f.title}</h3>
+                        </div>
+                        <p class="feature-desc">${f.description}</p>
+                    </div>
+                </div>
+            `).join('')}
+        `;
 
         // About
         elements.aboutTitle.textContent = content.about.title;
@@ -271,6 +281,31 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
                 const scrolled = (winScroll / height) * 100;
                 progressBar.style.width = scrolled + "%";
+                
+                // Timeline Glowing Line
+                const timelineContainer = document.querySelector('.timeline-container');
+                const timelineProgress = document.getElementById('timeline-progress');
+                if (timelineContainer && timelineProgress) {
+                    const rect = timelineContainer.getBoundingClientRect();
+                    const windowHeight = window.innerHeight;
+                    // Start drawing when the top of the container reaches the middle of the screen
+                    const startPos = rect.top - (windowHeight / 2);
+                    let drawPercentage = -startPos / rect.height;
+                    if (drawPercentage < 0) drawPercentage = 0;
+                    if (drawPercentage > 1) drawPercentage = 1;
+                    timelineProgress.style.height = (drawPercentage * 100) + "%";
+                    
+                    // Activate timeline items when the line passes them
+                    document.querySelectorAll('.timeline-item').forEach(item => {
+                        const itemRect = item.getBoundingClientRect();
+                        // Item is active if its center is above the middle of the screen
+                        if (itemRect.top + (itemRect.height / 2) < windowHeight / 2 + 50) {
+                            item.classList.add('timeline-active');
+                        } else {
+                            item.classList.remove('timeline-active');
+                        }
+                    });
+                }
             });
         }
         
