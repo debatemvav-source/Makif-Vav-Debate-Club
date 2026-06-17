@@ -194,11 +194,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         // Testimonials
         if (content.testimonials) {
+            const allTestimonials = [...content.testimonials.items, ...content.testimonials.items];
             elements.testimonialsTitle.textContent = content.testimonials.title;
-            elements.testimonialsGrid.innerHTML = content.testimonials.items.map((item, index) => `
-                <div class="testimonial-card reveal" style="transition-delay: ${index * 0.1}s">
-                    <p class="testimonial-quote">"${item.quote}"</p>
-                    <p class="testimonial-name">${item.name}</p>
+            elements.testimonialsGrid.innerHTML = allTestimonials.map(t => `
+                <div class="testimonial-card">
+                    <p class="testimonial-quote">"${t.quote}"</p>
+                    <h4 class="testimonial-name">${t.name}</h4>
                 </div>
             `).join('');
         }
@@ -288,26 +289,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                 particlesContainer.appendChild(particle);
             }
         }
-        
-        // Wheel Effect for Testimonials
-        const tGrid = document.getElementById('testimonials-grid');
-        if (tGrid) {
-            tGrid.addEventListener('scroll', () => {
-                const cards = tGrid.querySelectorAll('.testimonial-card');
-                const gridCenter = window.innerWidth / 2;
-                cards.forEach(card => {
-                    const rect = card.getBoundingClientRect();
-                    const cardCenter = rect.left + (rect.width / 2);
-                    const dist = Math.abs(gridCenter - cardCenter);
-                    const scale = Math.max(0.85, 1 - (dist / window.innerWidth) * 0.3);
-                    const opacity = Math.max(0.4, 1 - (dist / window.innerWidth));
-                    card.style.setProperty('--wheel-scale', scale);
-                    card.style.setProperty('--wheel-opacity', opacity);
-                    card.style.transition = 'transform 0.1s ease-out, opacity 0.1s ease-out';
-                });
-            });
-            // Initial trigger after layout
-            setTimeout(() => tGrid.dispatchEvent(new Event('scroll')), 500);
-        }
+
     }
 });
