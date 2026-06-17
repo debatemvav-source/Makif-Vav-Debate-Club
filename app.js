@@ -242,7 +242,23 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
 
-        setupSlideshow(content.gallery.images);
+        if (content.general.driveApiUrl) {
+            fetch(content.general.driveApiUrl)
+                .then(res => res.json())
+                .then(data => {
+                    if (data && data.images && data.images.length > 0) {
+                        setupSlideshow(data.images);
+                    } else {
+                        setupSlideshow(content.gallery.images);
+                    }
+                })
+                .catch(err => {
+                    console.error('Failed to load images from Google Drive:', err);
+                    setupSlideshow(content.gallery.images);
+                });
+        } else {
+            setupSlideshow(content.gallery.images);
+        }
 
         // FAQ
         elements.faqTitle.textContent = content.faq.title;
