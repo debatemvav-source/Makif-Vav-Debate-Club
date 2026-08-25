@@ -4,7 +4,7 @@
     "email": "debatemvav@gmail.com",
     "instagram": "makifvavdebate",
     "logo": "./images/לוגו.png",
-    "driveApiUrl": "https://script.google.com/macros/s/AKfycbxY1703f2D8dJJ5ZFKpBFPEN-05sO4LFpaIYu_FJ6tAqQceMOMNJOPb_vfJZam3a7SQQA/exec"
+    "driveApiUrl": "https://script.google.com/macros/s/AKfycbzl8lYC-7x1VDJgTCB-sb9o_9Ut1wmPuMH9K4ckBCPxw63hNZmjvdIfeIbJOWP52AtIzw/exec"
   },
   "nav": {
     "home": "ראשי",
@@ -201,52 +201,57 @@
       {
         "years": "2025",
         "image": "",
-        "description": "נבחרת מחזור י' - תיאור הנבחרת יעודכן כאן."
+        "description": "נבחרת מחזור ל\"ג - תיאור הנבחרת יעודכן כאן."
       },
       {
         "years": "2024",
         "image": "",
-        "description": "נבחרת מחזור ט' - תיאור הנבחרת יעודכן כאן."
+        "description": "נבחרת מחזור ל\"ב - תיאור הנבחרת יעודכן כאן."
       },
       {
         "years": "2023",
         "image": "",
-        "description": "נבחרת מחזור ח' - תיאור הנבחרת יעודכן כאן."
+        "description": "נבחרת מחזור ל\"א - תיאור הנבחרת יעודכן כאן."
       },
       {
         "years": "2022",
         "image": "",
-        "description": "נבחרת מחזור ז' - תיאור הנבחרת יעודכן כאן."
+        "description": "נבחרת מחזור ל' - תיאור הנבחרת יעודכן כאן."
       },
       {
         "years": "2021",
         "image": "",
-        "description": "נבחרת מחזור ו' - תיאור הנבחרת יעודכן כאן."
+        "description": "נבחרת מחזור כ\"ט - תיאור הנבחרת יעודכן כאן."
       },
       {
         "years": "2020",
         "image": "",
-        "description": "נבחרת מחזור ה' - תיאור הנבחרת יעודכן כאן."
+        "description": "נבחרת מחזור כ\"ח - תיאור הנבחרת יעודכן כאן."
       },
       {
         "years": "2019",
         "image": "",
-        "description": "נבחרת מחזור ד' - תיאור הנבחרת יעודכן כאן."
+        "description": "נבחרת מחזור כ\"ז - תיאור הנבחרת יעודכן כאן."
       },
       {
         "years": "2018",
         "image": "",
-        "description": "נבחרת מחזור ג' - תיאור הנבחרת יעודכן כאן."
+        "description": "נבחרת מחזור כ\"ו - תיאור הנבחרת יעודכן כאן."
       },
       {
         "years": "2017",
         "image": "",
-        "description": "נבחרת מחזור ב' - תיאור הנבחרת יעודכן כאן."
+        "description": "נבחרת מחזור כ\"ה - תיאור הנבחרת יעודכן כאן."
       },
       {
         "years": "2016",
         "image": "",
-        "description": "נבחרת מחזור א' - תיאור הנבחרת יעודכן כאן."
+        "description": "נבחרת מחזור כ\"ד - תיאור הנבחרת יעודכן כאן."
+      },
+      {
+        "years": "2015",
+        "image": "",
+        "description": "נבחרת מחזור כ\"ג - תיאור הנבחרת יעודכן כאן."
       }
     ]
   },
