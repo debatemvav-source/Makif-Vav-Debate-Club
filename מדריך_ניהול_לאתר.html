@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <title>מדריך ניהול לאתר מועדון הדיבייט</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background-color: #f9f9f9;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        h1, h2, h3 {
+            color: #2563eb;
+        }
+        h1 { border-bottom: 2px solid #2563eb; padding-bottom: 10px; }
+        h2 { margin-top: 30px; border-bottom: 1px solid #eee; padding-bottom: 5px; }
+        code {
+            background: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 4px;
+            font-family: monospace;
+            color: #d63384;
+            direction: ltr;
+            display: inline-block;
+        }
+        pre {
+            background: #1e1e1e;
+            color: #d4d4d4;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            direction: ltr;
+            text-align: left;
+        }
+        .alert {
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+        }
+        .alert-warning {
+            color: #856404;
+            background-color: #fff3cd;
+            border-color: #ffeeba;
+        }
+        .alert-info {
+            color: #0c5460;
+            background-color: #d1ecf1;
+            border-color: #bee5eb;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; padding: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🛠️ מדריך הניהול המלא לאתר מועדון הדיבייט</h1>
+        
+        <p>איזה כיף שהאתר באוויר ומתעדכן!<br>
+        האתר בנוי בשילוב של שתי מערכות כדי להקל עליך ככל האפשר:</p>
+        <ol>
+            <li><strong>התמונות</strong> נמשכות אוטומטית מ-<strong>Google Drive</strong>.</li>
+            <li><strong>הטקסטים והמבנה</strong> נשלטים דרך קובץ ה-<code>content.json</code> ב-<strong>GitHub</strong>.</li>
+        </ol>
+        
+        <p>הנה כל מה שצריך לדעת כדי לנהל את האתר בצורה שוטפת.</p>
+        
+        <h2>🖼️ ניהול תמונות (דרך Google Drive)</h2>
+        <p>כל התמונות באתר נמשכות ישירות מתיקיית הדרייב הראשית שלך. בתוך התיקייה הראשית צריכות להיות התיקיות הבאות:</p>
+        <ul>
+            <li><code>Logo</code> (תמונה אחת ללוגו)</li>
+            <li><code>Hero</code> (תמונה אחת לרקע העליון בעמוד הראשי)</li>
+            <li><code>About</code> (3 תמונות לפסקאות האודות)</li>
+            <li><code>Gallery</code> (כמה תמונות שתרצה שיתחלפו בגלריה)</li>
+            <li><code>Teams</code> (תמונות של כל הנבחרות)</li>
+            <li><code>Staff</code> (תמונות של צוות המועדון)</li>
+        </ul>
+        
+        <div class="alert alert-info">
+            <strong>💡 טיפ: איך לסדר את התמונות?</strong><br>
+            הסקריפט מושך את התמונות ומסדר אותן לפי <strong>השם של הקובץ</strong>.<br>
+            <ul>
+                <li><strong>בנבחרות (Teams):</strong> הסקריפט מסדר מהגבוה לנמוך (כדי שהשנה האחרונה תהיה ראשונה). קרא לתמונות לפי שנת המחזור, למשל: <code>2025.jpg</code>, <code>2024.jpg</code>, <code>2023.jpg</code>.</li>
+                <li><strong>בצוות ובאודות (Staff / About):</strong> הסקריפט מסדר מהנמוך לגבוה. לכן, כדי שהתמונות יופיעו בסדר הנכון (מנטורית, קפטן, סיניורים, ג'וניורים), מומלץ לקרוא לקבצים במספרים: <code>1.jpg</code> למנטורית, <code>2.jpg</code> לקפטן, <code>3.jpg</code> לסיניורים, <code>4.jpg</code> לג'וניורים.</li>
+            </ul>
+        </div>
+        
+        <p>כדי להחליף תמונה, פשוט תמחק את התמונה הישנה מהתיקייה בדרייב ותעלה את החדשה באותו שם. האתר יתעדכן בפעם הבאה שירעננו אותו!</p>
+        
+        <h2>📝 ניהול טקסטים (דרך GitHub)</h2>
+        <p>כל הטקסטים באתר נמצאים בקובץ אחד שנקרא <code>content.json</code> בתוך המאגר שלך ב-GitHub.<br>
+        כדי לערוך אותו: היכנס לקובץ ב-GitHub ולחץ על סמל העיפרון ✏️ (בצד ימין למעלה). לאחר שסיימת, לחץ על <strong>Commit changes</strong>.</p>
+        
+        <div class="alert alert-warning">
+            <strong>⚠️ כלל ברזל בעריכת JSON!</strong>
+            <ol>
+                <li>טקסט חייב להיות תמיד עטוף במרכאות. (למשל: <code>"הטקסט שלי"</code>)</li>
+                <li>אם יש רשימה של פריטים (כמו כמה שאלות או כמה חוויות), <strong>חייב להיות פסיק <code>,</code> בין פריט לפריט</strong>, אבל <strong>אסור</strong> שיהיה פסיק אחרי הפריט האחרון ברשימה!</li>
+            </ol>
+        </div>
+        
+        <h3>1. 👥 צוות המועדון (Staff)</h3>
+        <p>כדי לשנות את המילים של המנטורית או הקפטן, רד לתחתית הקובץ לאזור ה-<code>"staff"</code>. תראה שם בלוקים כמו זה:</p>
+<pre><code>"mentor": {
+  "title": "מנטורית המועדון",
+  "image": "",
+  "word": "כאן נכנס הטקסט המרגש של המנטורית..."
+}</code></pre>
+        <p>פשוט שנה את הטקסט שבתוך השורה של <code>"word"</code>. המרכאות הענקיות יתווספו אוטומטית באתר!</p>
+        
+        <h3>2. ❓ שאלות ותשובות (FAQ)</h3>
+        <p>כדי להוסיף שאלה חדשה, חפש את <code>"faq"</code> ואז את <code>"questions"</code>. תעתיק את הבלוק של השאלה האחרונה, תוסיף פסיק אחריה, ותדביק:</p>
+<pre><code>{
+  "q": "השאלה הישנה...",
+  "a": "התשובה הישנה..."
+},
+{
+  "q": "השאלה החדשה שלך?",
+  "a": "התשובה החדשה שלך!"
+}</code></pre>
+        
+        <h3>3. ⭐ חוויות התלמידים (Testimonials)</h3>
+        <p>בדיוק כמו בשאלות, גם כאן יש רשימה. חפש את <code>"testimonials"</code> ואז <code>"items"</code>. אם תרצה להוסיף חוויה, העתק את אחד הבלוקים והוסף אותו:</p>
+<pre><code>{
+  "name": "שם התלמיד",
+  "quote": "החוויה שלו כאן..."
+}</code></pre>
+        
+        <h3>4. 🏆 נבחרות העבר (Teams)</h3>
+        <p>תחת <code>"teams"</code> > <code>"items"</code> יש רשימה של 11 בלוקים, אחד לכל נבחרת. אם תרצה בעתיד להוסיף את נבחרת 2026, פשוט תוסיף בלוק <em>ראשון</em> ברשימה (אל תשכח את הפסיק בין הבלוק הראשון לשני):</p>
+<pre><code>"teams": {
+  "title": "הנבחרות שלנו",
+  "items": [
+    {
+      "years": "2026",
+      "image": "",
+      "description": "נבחרת מחזור ל\"ד - תיאור..."
+    },
+    {
+      "years": "2025",
+      "image": "",
+      "description": "נבחרת מחזור ל\"ג - תיאור..."
+    }
+    // ... שאר הנבחרות
+  ]
+}</code></pre>
+        <p><strong>שימו לב:</strong> ה-<code>image</code> תמיד נשאר ריק <code>""</code> כי התמונה נמשכת מהדרייב.</p>
+        
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 30px 0;">
+        <p><strong>מתי אראה את השינויים?</strong><br>
+        כל שמירה (Commit) ב-GitHub לוקחת בין דקה לשלוש דקות עד שהיא מתעדכנת ברשת. תמונות בדרייב עשויות לקחת כמה דקות להתעדכן בגלל המטמון (Cache) של גוגל.</p>
+    </div>
+</body>
+</html>
