@@ -294,17 +294,19 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Teams
         if (content.teams && elements.teamsTitle && elements.teamsContainer) {
             elements.teamsTitle.textContent = content.teams.title;
-            elements.teamsContainer.innerHTML = content.teams.items.map(team => `
-                <div class="team-card reveal">
-                    <div class="team-image-wrapper">
-                        <img src="${team.image}" alt="נבחרת ${team.years}" class="team-image">
-                    </div>
-                    <div class="team-info">
-                        <h3 class="team-years">${team.years}</h3>
+            elements.teamsContainer.innerHTML = content.teams.items.map((team, index) => {
+                const isReverse = index % 2 !== 0 ? 'reverse' : '';
+                return `
+                <div class="team-showcase-item reveal ${isReverse}">
+                    <div class="team-year-col">
+                        <div class="year-badge">${team.years}</div>
                         <p class="team-desc">${team.description || ''}</p>
                     </div>
+                    <div class="team-image-col">
+                        <img src="${team.image}" alt="נבחרת ${team.years}" class="team-image">
+                    </div>
                 </div>
-            `).join('');
+            `}).join('');
         }
 
         // Staff
