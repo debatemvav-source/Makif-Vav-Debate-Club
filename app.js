@@ -37,6 +37,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         // FAQ
         faqTitle: document.getElementById('faq-title'),
         faqContainer: document.getElementById('faq-container'),
+
+        // Teams
+        teamsTitle: document.getElementById('teams-title'),
+        teamsContainer: document.getElementById('teams-container'),
+
+        // Staff
+        staffTitle: document.getElementById('staff-title'),
+        staffContainer: document.getElementById('staff-container'),
         
         // Footer
         contactEmail: document.getElementById('contact-email'),
@@ -44,74 +52,50 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
 
     // Initialize Theme
-    const savedTheme = localStorage.getItem('theme') || 'light';
+    const savedTheme = localStorage.getItem('theme') || 'dark';
     document.documentElement.setAttribute('data-theme', savedTheme);
 
     // Fetch Content
     try {
         const response = await fetch('content.json');
         content = await response.json();
-        
-        // Drive Sync Override
-        if (content.general.driveApiUrl && content.general.driveApiUrl.trim() !== "") {
-            try {
-                const apiUrl = content.general.driveApiUrl + (content.general.driveApiUrl.includes('?') ? '&' : '?') + 't=' + new Date().getTime();
-                const driveRes = await fetch(apiUrl);
-                const driveData = await driveRes.json();
-                if (driveData && !driveData.error) {
-                    if (driveData.logo) content.general.logo = driveData.logo;
-                    if (driveData.hero) content.home.heroImage = driveData.hero;
-                    if (driveData.about && driveData.about.length > 0) content.about.images = driveData.about;
-                    if (driveData.gallery && driveData.gallery.length > 0) content.gallery.images = driveData.gallery;
-                }
-            } catch(e) { console.error("Drive sync failed", e); }
-        }
-        
         renderContent();
         initScrollAnimations();
     } catch (error) {
-        console.error("Failed to load content.json", error);
+        console.error('Error loading content:', error);
     }
 
-    // Navigation
+    // Navigation Logic
     elements.navButtons.forEach(btn => {
         btn.addEventListener('click', () => {
-            const targetId = btn.getAttribute('data-target');
-            
-            // Update active button
+            // Remove active classes
             elements.navButtons.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+            elements.sections.forEach(s => s.classList.remove('active'));
             
-            // Show target section
-            elements.sections.forEach(sec => {
-                if(sec.id === targetId) {
-                    sec.classList.add('active');
-                } else {
-                    sec.classList.remove('active');
-                }
-            });
+            // Add active classes
+            btn.classList.add('active');
+            const targetId = btn.getAttribute('data-target');
+            document.getElementById(targetId).classList.add('active');
 
-            // Close mobile menu
-            if(window.innerWidth <= 768) {
-                elements.navMenu.classList.remove('show');
-                elements.mobileBtn.textContent = '☰';
-                elements.mobileBtn.style.transform = 'rotate(0deg)';
-            }
+            // Close mobile menu if open
+            elements.navMenu.classList.remove('show');
+            elements.mobileBtn.textContent = '☰';
+            elements.mobileBtn.style.transform = 'rotate(0deg)';
         });
     });
 
-    // CTA button click
-    elements.heroCta.addEventListener('click', () => {
-        document.getElementById('nav-about').click();
-    });
-
-    // Mobile Menu
+    // Mobile Menu Toggle
     elements.mobileBtn.addEventListener('click', () => {
         elements.navMenu.classList.toggle('show');
-        if(elements.navMenu.classList.contains('show')) {
-            elements.mobileBtn.textContent = '✕';
-            elements.mobileBtn.style.transform = 'rotate(90deg)';
-        } else {
+        const isShowing = elements.navMenu.classList.contains('show');
+        elements.mobileBtn.textContent = isShowing ? '✕' : '☰';
+        elements.mobileBtn.style.transform = isShowing ? 'rotate(90deg)' : 'rotate(0deg)';
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.nav-container') && elements.navMenu.classList.contains('show')) {
+            elements.navMenu.classList.remove('show');
             elements.mobileBtn.textContent = '☰';
             elements.mobileBtn.style.transform = 'rotate(0deg)';
         }
@@ -156,6 +140,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('nav-about').textContent = content.nav.about;
         document.getElementById('nav-testimonials').textContent = content.nav.testimonials;
         document.getElementById('nav-gallery').textContent = content.nav.gallery;
+        document.getElementById('nav-teams').textContent = content.nav.teams || 'נבחרות העבר';
+        document.getElementById('nav-staff').textContent = content.nav.staff || 'צוות המועדון';
         document.getElementById('nav-faq').textContent = content.nav.faq;
 
         // Home
@@ -171,42 +157,45 @@ document.addEventListener('DOMContentLoaded', async () => {
         elements.featuresGrid.innerHTML = `
             <div class="timeline-line-bg"></div>
             <div class="timeline-line-progress" id="timeline-progress"></div>
-            ${content.home.features.map((f, index) => `
-                <div class="timeline-item ${index % 2 === 0 ? 'right' : 'left'}">
-                    <div class="timeline-dot" data-index="${index}">${index + 1}</div>
-                    <div class="timeline-content-wrapper reveal delay-${index % 2 + 1}">
-                        <div class="timeline-ribbon">
-                            <span class="feature-icon">${f.icon}</span>
-                            <h3 class="feature-title">${f.title}</h3>
-                        </div>
-                        <p class="feature-desc">${f.description}</p>
+        ` + content.home.features.map((feature, index) => {
+            const side = index % 2 === 0 ? 'right' : 'left';
+            return `
+            <div class="timeline-item ${side} reveal">
+                <div class="timeline-dot">${index + 1}</div>
+                <div class="timeline-content-wrapper">
+                    <div class="timeline-ribbon">
+                        <div class="feature-icon">${feature.icon}</div>
+                        <h3 class="feature-title">${feature.title}</h3>
                     </div>
+                    <p class="feature-desc">${feature.description}</p>
                 </div>
-            `).join('')}
-        `;
+            </div>
+        `}).join('');
+
+        elements.heroCta.addEventListener('click', () => {
+            document.getElementById('nav-about').click();
+        });
 
         // About
         elements.aboutTitle.textContent = content.about.title;
         elements.aboutContainer.innerHTML = content.about.paragraphs.map((p, index) => {
-            const isReverse = index % 2 !== 0;
-            const imgSrc = content.about.images && content.about.images[index] ? content.about.images[index] : '';
-            const imgHtml = imgSrc ? `<div class="about-item-img reveal"><img src="${imgSrc}" alt="About image"></div>` : '';
+            const isReverse = index % 2 !== 0 ? 'reverse' : '';
+            const img = content.about.images && content.about.images[index] ? content.about.images[index] : '';
             return `
-                <div class="about-item ${isReverse ? 'reverse' : ''}">
-                    <div class="about-item-text reveal">
-                        <h3>${p.subtitle}</h3>
-                        <p>${p.text}</p>
-                    </div>
-                    ${imgHtml}
+            <div class="about-item reveal ${isReverse}">
+                <div class="about-item-text">
+                    <h3>${p.subtitle}</h3>
+                    <p>${p.text}</p>
                 </div>
-            `;
-        }).join('');
-        
+                ${img ? `<div class="about-item-img"><img src="${img}" alt="${p.subtitle}"></div>` : ''}
+            </div>
+        `}).join('');
+
         // Testimonials
-        if (content.testimonials) {
-            const allTestimonials = [...content.testimonials.items, ...content.testimonials.items];
-            elements.testimonialsTitle.textContent = content.testimonials.title;
-            elements.testimonialsGrid.innerHTML = allTestimonials.map(t => `
+        elements.testimonialsTitle.textContent = content.testimonials.title;
+        if (content.testimonials.items && content.testimonials.items.length > 0) {
+            const loopItems = [...content.testimonials.items, ...content.testimonials.items, ...content.testimonials.items];
+            elements.testimonialsGrid.innerHTML = loopItems.map(t => `
                 <div class="testimonial-card">
                     <p class="testimonial-quote">"${t.quote}"</p>
                     <h4 class="testimonial-name">${t.name}</h4>
@@ -253,14 +242,31 @@ document.addEventListener('DOMContentLoaded', async () => {
                         setupSlideshow(content.gallery.images);
                     }
                     
-                    // תמונות נוספות מהדרייב אם קיימות
-                    if (data.logo) document.getElementById('logo-img').src = data.logo;
-                    if (data.hero) document.getElementById('hero').style.backgroundImage = `linear-gradient(to bottom, rgba(15, 23, 42, 0.4), var(--bg-primary)), url('${data.hero}')`;
+                    // תמונות בודדות
+                    if (data.logo) document.getElementById('nav-logo').src = data.logo;
+                    if (data.hero) elements.heroSection.style.backgroundImage = `url('${data.hero}')`;
                     
+                    // אודות
                     if (data.about && data.about.length > 0) {
                         const aboutImgs = document.querySelectorAll('.about-item-img img');
                         aboutImgs.forEach((img, i) => {
                             if (data.about[i]) img.src = data.about[i];
+                        });
+                    }
+                    
+                    // נבחרות מהדרייב
+                    if (data.teams && data.teams.length > 0) {
+                        const teamImgs = document.querySelectorAll('.team-image');
+                        teamImgs.forEach((img, i) => {
+                            if (data.teams[i]) img.src = data.teams[i];
+                        });
+                    }
+
+                    // צוות מהדרייב
+                    if (data.staff && data.staff.length > 0) {
+                        const staffImgs = document.querySelectorAll('.staff-img-col img');
+                        staffImgs.forEach((img, i) => {
+                            if (data.staff[i]) img.src = data.staff[i];
                         });
                     }
                 })
@@ -284,6 +290,51 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
             </div>
         `).join('');
+
+        // Teams
+        if (content.teams && elements.teamsTitle && elements.teamsContainer) {
+            elements.teamsTitle.textContent = content.teams.title;
+            elements.teamsContainer.innerHTML = content.teams.items.map(team => `
+                <div class="team-card reveal">
+                    <div class="team-image-wrapper">
+                        <img src="${team.image}" alt="נבחרת ${team.years}" class="team-image">
+                    </div>
+                    <div class="team-info">
+                        <h3 class="team-years">${team.years}</h3>
+                        <p class="team-desc">${team.description || ''}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Staff
+        if (content.staff && elements.staffTitle && elements.staffContainer) {
+            elements.staffTitle.textContent = content.staff.title;
+            const staffOrder = ['mentor', 'captain', 'seniors', 'juniors'];
+            let staffHtml = '';
+            staffOrder.forEach((key, index) => {
+                const person = content.staff[key];
+                if (person) {
+                    const isReverse = index % 2 !== 0 ? 'reverse' : '';
+                    staffHtml += `
+                        <div class="staff-block reveal ${isReverse}">
+                            <div class="staff-img-col">
+                                <img src="${person.image}" alt="${person.title}">
+                            </div>
+                            <div class="staff-text-col">
+                                <h3 class="staff-role">${person.title}</h3>
+                                <blockquote class="staff-quote">
+                                    <span class="quote-mark">"</span>
+                                    ${person.word}
+                                    <span class="quote-mark">"</span>
+                                </blockquote>
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+            elements.staffContainer.innerHTML = staffHtml;
+        }
     }
 
     function initScrollAnimations() {
@@ -316,17 +367,14 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (timelineContainer && timelineProgress) {
                     const rect = timelineContainer.getBoundingClientRect();
                     const windowHeight = window.innerHeight;
-                    // Start drawing when the top of the container reaches the middle of the screen
                     const startPos = rect.top - (windowHeight / 2);
                     let drawPercentage = -startPos / rect.height;
                     if (drawPercentage < 0) drawPercentage = 0;
                     if (drawPercentage > 1) drawPercentage = 1;
                     timelineProgress.style.height = (drawPercentage * 100) + "%";
                     
-                    // Activate timeline items when the line passes them
                     document.querySelectorAll('.timeline-item').forEach(item => {
                         const itemRect = item.getBoundingClientRect();
-                        // Item is active if its center is above the middle of the screen
                         if (itemRect.top + (itemRect.height / 2) < windowHeight / 2 + 50) {
                             item.classList.add('timeline-active');
                         } else {
@@ -336,22 +384,5 @@ document.addEventListener('DOMContentLoaded', async () => {
                 }
             });
         }
-        
-        // Particles Generation
-        const particlesContainer = document.getElementById('particles-container');
-        if (particlesContainer) {
-            for (let i = 0; i < 15; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                const size = Math.random() * 20 + 10; // 10px to 30px
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
-                particle.style.animationDelay = `${Math.random() * 5}s`;
-                particlesContainer.appendChild(particle);
-            }
-        }
-
     }
 });
